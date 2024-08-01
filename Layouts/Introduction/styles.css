@@ -1,0 +1,16 @@
+*,
+*::before *::after {
+    box-sizing: border-box;
+}
+
+.box::before {
+    content: "WelcomeTo my Way Of Schooling.alksdhfhausdnn jsufsjfusahcn ahdfas adhue hvbsu abdfsi jjoiv huko";
+}
+
+.box {
+    border: 3px solid gold;
+    width: 150px;
+    height: 150px;
+    overflow: scroll;
+    /*it controls overflowing of the text and manages all the text accordingly*/
+}

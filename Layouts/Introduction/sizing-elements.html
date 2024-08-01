@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *,
+        /* 
+The ::before and ::after pseudo-elements in CSS are used to insert content before or after the content of an element. They are often used for decorative purposes  */
+        
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+        
+        .box::before {
+            /* used box to write any text*/
+            content: "Hello";
+        }
+        
+        body {
+            margin: 100px;
+        }
+        
+        .p {
+            padding: 10px 20px;
+            background-color: black;
+        }
+        
+        .box {
+            width: 50px;
+            height: 500px;
+            padding: 40px 40px;
+            background-color: gold;
+            border: 6px solid orange;
+            box-sizing: border-box;
+            display: inline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box"></div>
+    <span class="box"></span>
+
+
+
+
+
+</body>
+
+</html>
