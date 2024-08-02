@@ -5,14 +5,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            margin: 10px;
+            height: 200vh;
+        }
+        
+        .boxes {
+            border: 3px solid lightgray;
+            position: relative;
+        }
+        
+        .box {
+            width: 5rem;
+            height: 5rem;
+        }
+        
+        .box-one {
+            background: gold;
+        }
+        
+        .box-two {
+            background: tomato;
+            position: absolute;
+            left: 5rem;
+            /* top: 2rem;
+            bottom: 4rem;
+            right:0;
+            position:fixed;
+            position:relative;
+            z-index: 1;*/
+        }
+        
+        .box-three {
+            background: lightblue;
+        }
+    </style>
 </head>
 
 <body>
     <div class="boxes">
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
+        <div class="box box-one"></div>
+        <div class="box box-two"></div>
+        <div class="box box-three"></div>
+
+
     </div>
+
 </body>
 
 </html>
