@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hubble Banner and Menu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .banner {
+            background-image: url('https://unsplash.com/photos/E0AHdsENmDg/download?force=true&w=1920');
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .banner-content h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            letter-spacing: 2px;
+        }
+        
+        .banner-content p {
+            font-size: 1.5rem;
+            font-weight: 300;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+        
+        @media (max-width: 1440px) {
+            .banner {
+                background-image: url('https://unsplash.com/photos/E0AHdsENmDg/download?force=true&w=1440');
+            }
+        }
+        
+        @media (max-width: 1228px) {
+            .banner {
+                background-image: url('https://unsplash.com/photos/E0AHdsENmDg/download?force=true&w=1228');
+            }
+        }
+        
+        @media (max-width: 853px) {
+            .banner {
+                background-image: url('https://unsplash.com/photos/E0AHdsENmDg/download?force=true&w=853');
+            }
+        }
+        
+        @media (max-width: 320px) {
+            .banner {
+                background-image: url('https://unsplash.com/photos/E0AHdsENmDg/download?force=true&w=320');
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="banner">
+        <div class="banner-content">
+            <h1>Explore the Universe</h1>
+            <p>Discover the wonders of the cosmos</p>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
