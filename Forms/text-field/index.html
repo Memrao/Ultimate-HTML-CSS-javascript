@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
 
     <style>
         body {
@@ -23,8 +22,9 @@
             background-color: rgba(0, 0, 0, 0.3);
             /* transformation*/
             padding: 5rem;
-            border-radius: 10px;
-            box-sizing: unset;
+            border-radius: 3rem;
+            box-sizing: border-box;
+            width: 50%;
         }
         
         form {
@@ -56,6 +56,12 @@
         .f3 {
             width: 20%;
         }
+        
+        button {
+            border-radius: 2rem;
+            width: 20.5%;
+            height: 20%;
+        }
     </style>
 
 </head>
@@ -66,12 +72,12 @@
 
         <!--for text-->
         <form class="f1">
-            <input type="text" placeholder="Text">
+            <input type="Name" placeholder="Name">
         </form>
 
         <!--for number-->
         <form class="f2">
-            <input type="number" placeholder="Number">
+            <input type="age-no" placeholder="age-no">
         </form>
 
         <!--for password-->
@@ -87,15 +93,14 @@
         <!--for email-->
         <form class="f2">
             <input type="email" placeholder="Email">
-            <textarea cols="30" rows="10" placeholder="Text area"></textarea>
+            <textarea cols="30" rows="10" placeholder="Quesries"></textarea>
         </form>
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-primary" type="button">Submit</button>
+
+        </div>
 
 
-        <!--for checkbox-->
-        <form class="f3">
-            <input type="checkbox" id="Remeber Me">
-            <label class="label-inline" for="Remember Me">Remeber Me</label>
-        </form>
 
     </div>
 </body>
