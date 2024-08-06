@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+
+    <style>
+        body {
+            background: url("2.jpg") no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        .container {
+            background-color: rgba(0, 0, 0, 0.3);
+            /* transformation*/
+            padding: 5rem;
+            border-radius: 10px;
+            box-sizing: unset;
+        }
+        
+        form {
+            margin-bottom: 1rem;
+        }
+        
+        input,
+        textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin-top: 0.5rem;
+            color: white;
+            background-color: transparent;
+            border: 1px solid white;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        
+        input::placeholder,
+        textarea::placeholder {
+            color: #ccc;
+        }
+        
+        .f1,
+        .f2 {
+            width: 50%;
+        }
+        
+        .f3 {
+            width: 20%;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!--for text-->
+        <form class="f1">
+            <input type="text" placeholder="Text">
+        </form>
+
+        <!--for number-->
+        <form class="f2">
+            <input type="number" placeholder="Number">
+        </form>
+
+        <!--for password-->
+        <form class="f2">
+            <input type="password" placeholder="Password">
+        </form>
+
+        <!--for date-->
+        <form class="f2">
+            <input type="date">
+        </form>
+
+        <!--for email-->
+        <form class="f2">
+            <input type="email" placeholder="Email">
+            <textarea cols="30" rows="10" placeholder="Text area"></textarea>
+        </form>
+
+
+        <!--for checkbox-->
+        <form class="f3">
+            <input type="checkbox" id="Remeber Me">
+            <label class="label-inline" for="Remember Me">Remeber Me</label>
+        </form>
+
+    </div>
+</body>
+
+</html>

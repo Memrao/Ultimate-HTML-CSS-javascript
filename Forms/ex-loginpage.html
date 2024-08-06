@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+    <style>
+        body {
+            background-size: cover;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin: 150px;
+            padding: 100px;
+            width: 70%;
+        }
+        
+        .container {
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(197, 197, 197, 0.2);
+            padding: 12rem;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        label {
+            display: block;
+            padding: 3px;
+        }
+        
+        input {
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            padding: 0.5rem 0.7rem;
+            transition: border-color 0.15s, box-shadow 0.15s;
+            border-color: #7db0fb;
+        }
+        
+        form {
+            margin-bottom: 2rem;
+        }
+        
+        button {
+            background: #1a67db;
+            color: #fff;
+            border: 0;
+            padding: 0.5rem 0.7rem;
+            outline: 0;
+            width: 30rem;
+            border-radius: 2rem;
+            text-align: center;
+            font-weight: lighter;
+        }
+        
+        .f1 {
+            width: 100%;
+        }
+        
+        .container h1 {
+            justify-content: center;
+            text-align: center;
+            font-weight: bold;
+            color: black;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+
+        <h1>Please Sign in</h1>
+        <form class="f1" action="https://formspree.io/f/mybnlqn" method="POST">
+
+            <input type="email" placeholder="Email">
+
+            <input type="password" placeholder="password" class="f1">
+
+            <input type="checkbox" id="Remeber Me">
+            <label class="label-inline" for="Remember Me">Remeber Me</label>
+            <label>
+            <button type="button">Sign Up</button>
+          </label>
+
+
+        </form>
+
+
+
+
+    </div>
+</body>
+
+</html>
