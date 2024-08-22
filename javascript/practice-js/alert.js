@@ -1,0 +1,1 @@
+alert("Apna college")
