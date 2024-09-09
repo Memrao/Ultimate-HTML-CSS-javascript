@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Add Font Awesome CDN link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <h1><i class="fa-brands fa-shopify"></i> Ecommerce Website</h1>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search products...">
+        <select id="filterDropdown">
+            <option value="">All Categories</option>
+        </select>
+    </div>
+    <table id="productTable">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Category</th>
+                <th>Products</th>
+                <th>Stock</th>
+                <th>Warranty</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Product rows will be dynamically added here -->
+        </tbody>
+    </table>
+    <div class="pagination" id="pagination">
+        <!-- Pagination links will be dynamically added here -->
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

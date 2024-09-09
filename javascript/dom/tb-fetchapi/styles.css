@@ -1,0 +1,216 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 23px;
+    background-color: #f4f4f4;
+    background: linear-gradient(to right, #afaeae, #ffffff00);
+    background: radial-gradient(circle, #e0e0e0, #ffffff00);
+    text-align: center;
+    /* Center text within the body */
+}
+
+h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Center the icon and heading text */
+    font-family: Lato;
+    font-size: 2rem;
+    /* Adjust the font size as needed */
+    margin-bottom: 20px;
+}
+
+h1 i {
+    font-size: 2rem;
+    /* Adjust the icon size as needed */
+    margin-right: 10px;
+    /* Space between icon and title text */
+    color: #341777fe;
+    /* Icon color */
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    width: 35%;
+    padding: 0.7rem;
+    border-radius: 2rem;
+    background-color: #fff5;
+    /* border: 1px solid #ddd; */
+    border: 1px solid #341777fe;
+    box-shadow: 0 .1rem .4rem #0002;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:hover,
+input[type="text"]:focus {
+    width: 45%;
+    background-color: #fff8;
+    box-shadow: 0 .1rem .4rem #0005;
+    outline: none;
+}
+
+#filterDropdown {
+    padding: 0.7rem;
+    border-radius: 2rem;
+    background-color: #fff5;
+    border: 1px solid #341777fe;
+    box-shadow: 0 .1rem .4rem #0002;
+    /* transition: all 0.3s ease; */
+    display: block;
+    cursor: pointer;
+}
+
+#filterDropdown:hover,
+#filterDropdown:focus {
+    background-color: #fff8;
+    box-shadow: 0 .1rem .4rem #0005;
+    outline: none;
+}
+
+table {
+    width: 80%;
+    height: 90vh;
+    background-color: #fff5;
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .4rem .8rem #0005;
+    border-radius: 1.4rem;
+    overflow: hidden;
+    margin: 0 auto;
+    /* Center the table horizontally */
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th,
+td {
+    padding: 12px;
+    border: .2px solid #c4bed1fe;
+    text-align: left;
+    vertical-align: middle;
+    /* Ensure vertical alignment is consistent */
+    box-sizing: border-box;
+    /* Ensure padding is included in height */
+}
+
+th {
+    background-color: #341777fe;
+    color: white;
+    padding: 15px;
+}
+
+
+/* Add hover effect to indicate row is clickable */
+
+table tbody tr:hover {
+    background-color: #d8d5d5fe;
+    /* Light grey background color on hover */
+    cursor: pointer;
+    /* Change cursor to pointer */
+    box-shadow: 0 0 10px #d8d5d5fe;
+    /* Add slight shadow to indicate elevation */
+    transition: all 0.3s ease;
+}
+
+
+/* Add active state for when the product is clicked */
+
+table tbody tr:active {
+    background-color: #e0e0e0;
+    /* Slightly darker background on click */
+    box-shadow: 0 0 15px #ccc;
+    /* Slightly deeper shadow on click */
+    transform: scale(0.98);
+    /* Slight scale effect to give "pressed" feel */
+}
+
+.hide {
+    display: none;
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    list-style-type: none;
+    margin: 20px 0;
+}
+
+.pagination li {
+    margin: 0 5px;
+}
+
+.pagination a {
+    text-decoration: none;
+    color: #341777fe;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border: .2px solid #c4bed1fe;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.pagination a:hover {
+    background-color: #341777fe;
+    color: white;
+}
+
+
+/* Highlight search terms */
+
+mark {
+    background-color: yellow;
+    /* Highlight color */
+    font-weight: bold;
+    /* Optional: Makes the highlighted text bold */
+}
+
+.pagination-link {
+    padding: 5px 10px;
+    text-decoration: none;
+    color: yellow;
+}
+
+.pagination-link.active {
+    font-weight: bold;
+    color: red;
+}
+
+.pagination-link:hover {
+    text-decoration: underline;
+}
+
+
+/* Hide the link by default */
+
+.product-link {
+    text-decoration: none;
+    color: black;
+    /* Use the same color as the text to hide the link */
+    display: inline-block;
+}
+
+
+/* Show the link when hovering over the product title */
+
+.product-link:hover {
+    text-decoration: underline;
+    color: blue;
+    /* Change the color on hover to indicate it's clickable */
+}

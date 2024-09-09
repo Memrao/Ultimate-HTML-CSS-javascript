@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Message Container for displaying the winner -->
+    <div class="msg-container hide">
+        <p id="msg">Winner</p>
+        <!-- Corrected the message container ID -->
+        <button id="new-btn">New Game</button>
+    </div>
+
+    <h1>Tic-Tac-Toe</h1>
+
+    <!-- Container for the game -->
+    <div class="container">
+        <div class="game">
+            <!-- 9 winning possibilities in the game -->
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+        </div>
+    </div>
+
+    <button id="reset-btn">Reset Game</button>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

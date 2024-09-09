@@ -1,0 +1,279 @@
+/* General Body Styling */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+    /* color: #333; */
+    /* background-color: #f0f0f0; */
+}
+
+
+/* Preloader */
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background-color: rgba(255, 255, 255, 0.8); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    /* color: #333; */
+}
+
+
+/* Container for Product Details */
+
+#productDetails {
+    width: 72%;
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    border: 0.4px solid black;
+    box-sizing: border-box;
+    font-size: 1.2rem;
+    /* Include padding and border in width */
+}
+
+
+/* Product Image Styling */
+
+#productDetails .image {
+    flex: 1;
+    max-width: 500px;
+}
+
+#productDetails .image img {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+
+/* Product Info Styling */
+
+#productDetails .describe {
+    flex: 2;
+}
+
+#productDetails .describe h1 {
+    font-size: 1.5em;
+    color: #333;
+}
+
+#productDetails .describe h3 {
+    font-size: 1.2rem;
+    color: #341777fe;
+    margin: 10px 0;
+}
+
+#productDetails .describe p {
+    font-size: 1.2rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+
+/* Rating and Review Section */
+
+#ratingSection {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Rating Stars */
+
+#ratingStars {
+    display: flex;
+    font-size: 3rem;
+    /* Increased star size */
+    color: #ddd;
+}
+
+#ratingStars .star {
+    cursor: pointer;
+    /* Ensure the cursor appears */
+    transition: color 0.3s ease;
+}
+
+#ratingStars .star:hover {
+    color: gold;
+}
+
+#ratingStars .star.checked {
+    color: gold;
+}
+
+#stars-container {
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+
+/* Review Section */
+
+#reviewsList {
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#reviewsList h3 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #333;
+}
+
+#reviewsList .review {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+#reviewsList .review:last-child {
+    border-bottom: none;
+}
+
+#reviewsList .review .review-rating {
+    font-size: 1.5em;
+    color: gold;
+}
+
+#reviewsList .review p {
+    margin: 5px 0 0;
+    font-size: 1.2em;
+    color: #666;
+}
+
+
+/* Review Submission Section */
+
+#reviewSubmission {
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#reviewSubmission textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    resize: none;
+}
+
+
+/* Gradient Button Styling for Review Submission */
+
+
+/* #reviewSubmission button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(45deg, #341777fe, #5d26a8);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+} */
+
+
+/* #reviewSubmission button:hover {
+    background-color: #2c0f6e;
+    transform: scale(1.05);
+}
+
+#reviewSubmission button:active {
+    background-color: #1a0a4e;
+    transform: scale(1);
+} */
+
+#submitReviewButton {
+    display: block;
+    width: 15%;
+    padding: 10px;
+    font-size: 1em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #341777fe;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#submitReviewButton:hover {
+    background-color: #2c0f6e;
+    transform: scale(1.05);
+}
+
+#submitReviewButton:hover:active {
+    background-color: #1a0a4e;
+    transform: scale(1);
+}
+
+
+/* Add to Cart Button Styling */
+
+#addToCartButton {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 1em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #341777fe;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#addToCartButton:hover {
+    background-color: #2c0f6e;
+    transform: scale(1.05);
+}
+
+#addToCartButton:active {
+    background-color: #1a0a4e;
+    transform: scale(1);
+}
+
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+    #productDetails {
+        width: 90%;
+        /* Reduce width on smaller screens */
+        flex-direction: column;
+        align-items: center;
+    }
+    #productDetails .image {
+        margin-bottom: 20px;
+    }
+}

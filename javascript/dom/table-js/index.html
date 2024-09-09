@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Table</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <main class="table" id="customers_table">
+        <section class="table__header">
+            <h1>Customer's Orders</h1>
+            <div class="input-group">
+                <input type="search" placeholder="Search Data...">
+                <img src="1.png" alt="">
+            </div>
+        </section>
+
+        <section class="table__body">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Category</th>
+                        <th>Customer</th>
+                        <th>Location</th>
+                        <th>Order Date</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody id="product-rows">
+                    <!-- Rows will be dynamically inserted here -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+
+    <script src="app.js"></script>
+</body>
+
+
+</html>
