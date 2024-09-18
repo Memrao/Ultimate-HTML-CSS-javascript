@@ -4,30 +4,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Page</title>
+    <title>Product Details</title>
     <link rel="stylesheet" href="product.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- <link rel="stylesheet" href="/product/cart.css"> -->
 </head>
 
 <body>
-    <!-- Shop Link -->
-    <a href="/product-listing/product-listing.html" class="shop-link">SHOP</a>
+    <header>
+        <ul id="navList">
+            <!-- Uncomment and update navigation links as needed -->
+            <!--
+            <li><a href="../home/home.html">HOME</a></li>
+            <li><a href="../home/home.html">SERVICES</a></li>
+            <li><a href="../home/home.html">ABOUT</a></li>
+            <li><a href="../product-listing/product-listing.html">SHOP</a></li>
+            <li><a href="../home/home.html">CONTACT</a></li>
+            -->
+            <!-- Logo, navigation, login button, category dropdown -->
+        </ul>
+    </header>
 
-    <!-- User List Section -->
-    <div id="user-list" class="user-list">
-        <h2>Users</h2>
-        <!-- User cards will be dynamically inserted here -->
+    <!-- Cart Icon with Badge -->
+    <div class="cart-icon">
+        <i class="fa fa-shopping-cart"></i>
+        <span class="cart-badge" id="cart-count">0</span>
     </div>
 
-    <!-- Cart Section -->
-    <div id="cart" class="cart">
-        <h2>Your Cart</h2>
-        <!-- Cart items will be dynamically inserted here -->
+    <!-- Sidebar for Cart -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <h2>Cart</h2>
+        <div id="cart-items"></div>
+        <button id="close-sidebar">Close</button>
     </div>
 
-    <!-- Preloader (hidden by default) -->
-    <div id="preloader" class="preloader" style="display: none;">Loading...</div>
 
-    <!-- Link to JavaScript -->
+
+    <main id="productDetails">
+        <!-- Product details will be injected here by script.js -->
+    </main>
+
+    <footer id="footerContent">
+        <!-- Footer content will be dynamically inserted here by JavaScript -->
+    </footer>
+
+    <!-- Copyright section -->
+    <div class="footer-copyright">
+        <p><strong>@2024 All Rights Reserved. Design by Memona Rao</strong></p>
+    </div>
+
     <script src="product.js"></script>
 </body>
 

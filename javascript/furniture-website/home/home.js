@@ -1,6 +1,5 @@
-document.addEventListener('DOMContentLoaded', function() {
-
-    const logoSrc = '../images/logo.png';
+document.addEventListener('DOMContentLoaded', async function() {
+    const logoSrc = '../images/logo.png'; // Ensure this is the correct path
     const CATEGORY_API_URL = 'https://dummyjson.com/products/categories';
 
     // Navigation links
@@ -11,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
         { href: '../product-listing/product-listing.html', text: 'SHOP' },
         { href: '#contact-section', text: 'CONTACT' }
     ];
-
 
     // Get the navList element from the DOM
     const navList = document.getElementById('navList');
@@ -26,14 +24,6 @@ document.addEventListener('DOMContentLoaded', function() {
     logoDiv.appendChild(logoImg);
     logoLi.appendChild(logoDiv);
     navList.appendChild(logoLi);
-
-    // Create and append the category dropdown icon
-    const popupLi = document.createElement('li');
-    const popupIcon = document.createElement('div');
-    popupIcon.classList.add('category-toggle');
-    popupIcon.innerHTML = '&#x25BC;'; // V-shaped arrow
-    popupLi.appendChild(popupIcon);
-    navList.appendChild(popupLi);
 
     // Create and append navigation links dynamically
     navLinks.forEach(link => {
@@ -54,7 +44,28 @@ document.addEventListener('DOMContentLoaded', function() {
     loginLi.appendChild(loginDiv);
     navList.appendChild(loginLi);
 
-    // Create and append the category dropdown
+    // Create and append the category dropdown icon (down arrow)
+    const popupLi = document.createElement('li');
+    const popupIcon = document.createElement('div');
+    popupIcon.classList.add('category-toggle');
+    popupIcon.id = 'popupIcon';
+
+    // Create and add the down-arrow image
+    const arrowImg = document.createElement('img');
+    arrowImg.src = 'down-arrow.png'; // Make sure the path is correct
+    arrowImg.alt = 'Dropdown Arrow';
+    arrowImg.id = 'arrowIcon';
+    arrowImg.style.width = '40px';
+    arrowImg.style.height = '40px';
+    popupIcon.appendChild(arrowImg);
+    popupLi.appendChild(popupIcon);
+    navList.appendChild(popupLi);
+
+    // Position arrow to the left
+    popupLi.style.position = 'absolute';
+    popupLi.style.left = '0'; // Align to the left
+
+    // Create and append the category dropdown container
     const dropdownLi = document.createElement('li');
     const categoryDropdown = document.createElement('div');
     categoryDropdown.classList.add('category-dropdown');
@@ -63,140 +74,75 @@ document.addEventListener('DOMContentLoaded', function() {
     dropdownLi.appendChild(categoryDropdown);
     navList.appendChild(dropdownLi);
 
-    // Create and append the close button for the dropdown
-    const closeButton = document.createElement('span');
-    closeButton.id = 'closeDropdown';
-    closeButton.textContent = 'X';
-    closeButton.style.cursor = 'pointer';
-    categoryDropdown.appendChild(closeButton);
-
-    // Create and append the list for categories
+    // Create the category list and append it to the dropdown
     const categoryList = document.createElement('ul');
     categoryList.id = 'categoryList';
     categoryDropdown.appendChild(categoryList);
 
-    // Function to fetch and populate categories in the dropdown
+    // Function to fetch categories from API and populate dropdown
     async function fetchCategories() {
         try {
             const res = await fetch(CATEGORY_API_URL);
             const data = await res.json();
-            const categories = data.categories; // Adjust if needed based on the response structure
+            console.log('Category API response:', data);
 
-            categoryList.innerHTML = ''; // Clear any existing categories
+            // Assuming the response is an array of category objects
+            if (Array.isArray(data)) {
+                categoryList.innerHTML = ''; // Clear previous categories
 
-            categories.forEach(category => {
-                const li = document.createElement('li');
-                li.textContent = category; // Directly using category as response seems to be an array of strings
-                categoryList.appendChild(li);
-            });
+                // Append each category to the list
+                data.forEach(category => {
+                    const li = document.createElement('li');
+                    const anchor = document.createElement('a');
+                    anchor.href = category.url; // Use the category URL
+                    anchor.textContent = category.name; // Category name
+                    anchor.addEventListener('click', (event) => {
+                        event.preventDefault(); // Prevent default link behavior
+                        // Fetch and display the products for this category
+                        window.location.href = `../product-listing/product-listing.html?category=${encodeURIComponent(category.slug)}`;
+                    });
+                    li.appendChild(anchor);
+                    categoryList.appendChild(li);
+                });
+            } else {
+                throw new Error('Invalid categories format.');
+            }
         } catch (error) {
             console.error('Failed to fetch categories:', error);
         }
     }
 
-    // Toggle dropdown and change icon
-    const categoryIcon = document.querySelector('.category-toggle');
+    // Fetch categories when the page loads
+    fetchCategories();
 
-    // Event listener for category dropdown toggle
-    categoryIcon.addEventListener('click', () => {
-        const isDropdownVisible = categoryDropdown.style.display === 'block';
-        if (isDropdownVisible) {
-            categoryDropdown.style.display = 'none';
-            categoryIcon.innerHTML = '&#x25BC;'; // Change back to V-shaped arrow
-        } else {
-            categoryDropdown.style.display = 'block';
-            categoryIcon.innerHTML = '&#x25B2;'; // Change to A-shaped arrow
-            fetchCategories(); // Fetch and display categories if not already done
-        }
+    // Toggle dropdown visibility and rotate the arrow icon
+    const popupIconElement = document.getElementById('popupIcon');
+    const arrowImgElement = document.getElementById('arrowIcon');
+    const categoryDropdownElement = document.getElementById('categoryDropdown');
+
+    popupIconElement.addEventListener('click', (event) => {
+        event.stopPropagation(); // Prevent the window click event from triggering
+        const isDropdownVisible = categoryDropdownElement.style.display === 'block';
+
+        // Toggle dropdown visibility
+        categoryDropdownElement.style.display = isDropdownVisible ? 'none' : 'block';
+
+        // Rotate the arrow based on the dropdown visibility
+        arrowImgElement.style.transform = isDropdownVisible ? 'rotate(0deg)' : 'rotate(180deg)';
     });
 
-    // Close the dropdown when the close button (X) is clicked
-    closeButton.addEventListener('click', () => {
-        categoryDropdown.style.display = 'none';
-        categoryIcon.innerHTML = '&#x25BC;'; // Change back to V-shaped arrow
+    // Close the dropdown when clicking anywhere else
+    document.addEventListener('click', () => {
+        categoryDropdownElement.style.display = 'none';
+        arrowImgElement.style.transform = 'rotate(0deg)';
     });
-
-    // Close the dropdown when clicking outside the dropdown content
-    window.addEventListener('click', (event) => {
-        if (!categoryDropdown.contains(event.target) && !categoryIcon.contains(event.target)) {
-            categoryDropdown.style.display = 'none';
-            categoryIcon.innerHTML = '&#x25BC;'; // Change back to V-shaped arrow
-        }
-    });
-
-    // Modal Popup functionality for category modal (if needed)
-    const categoryModal = document.getElementById('categoryModal');
-    const closeModal = document.getElementById('closeModal');
-
-    // Show the modal when the popup icon is clicked (if you want to keep the old modal functionality)
-    if (popupIcon) {
-        popupIcon.addEventListener('click', () => {
-            if (categoryModal) {
-                categoryModal.style.display = 'block';
-            }
-        });
-    }
-
-    // Close the modal when the close button (X) is clicked
-    if (closeModal) {
-        closeModal.addEventListener('click', () => {
-            if (categoryModal) {
-                categoryModal.style.display = 'none';
-            }
-        });
-    }
-
-    // Close the modal when clicking outside the modal content
-    if (categoryModal) {
-        window.addEventListener('click', (event) => {
-            if (event.target === categoryModal) {
-                categoryModal.style.display = 'none';
-            }
-        });
-    }
-
-    // Initialize the page
-    fetchCategories(); // Fetch and add categories to the dropdown
-    // fetchProducts(); // Uncomment if you have a function for fetching products
-
-    // Initialize slider
-    // showSlide(currentSlide); // Uncomment if you have a slider function
-
-    // Add event listeners for slider controls
-    const arrow1 = document.getElementById("arrow1");
-    const arrow2 = document.getElementById("arrow2");
-    if (arrow1) {
-        arrow1.addEventListener("click", function() {
-            moveSlide(-1); // Uncomment if you have a moveSlide function
-        });
-    }
-    if (arrow2) {
-        arrow2.addEventListener("click", function() {
-            moveSlide(1); // Uncomment if you have a moveSlide function
-        });
-    }
-
-    // Initially hide all slides except the first one
-    // slides.forEach((slide, index) => { slide.style.display = index === 0 ? "block" : "none"; }); // Uncomment if you have slides defined
-
-    // Show Login Form on Click
-    const loginBtn = document.getElementById("loginBtn");
-    if (loginBtn) {
-        loginBtn.addEventListener("click", function() {
-            alert("Login Form Coming Soon!");
-        });
-    }
-
-    // Contact Us Button Popup
-    const contactButton = document.getElementById("contactButton");
-    if (contactButton) {
-        contactButton.addEventListener("click", function() {
-            alert("You can reach us at: furniture@yahoo.com");
-        });
-    }
-
+    console.log('Category API response:', data);
 
 });
+
+
+
+//footer
 
 document.addEventListener('DOMContentLoaded', function() {
     // Function to load footer content
@@ -204,31 +150,37 @@ document.addEventListener('DOMContentLoaded', function() {
         const footerContent = document.getElementById('footerContent');
         if (footerContent) {
             const footerHTML = `
-                <div class="container" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-                    <div class="footer-section" style="text-align: center;">
-                        <h3>INFORMATION</h3>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                <div class="container" style="display: flex; justify-content: space-around; gap: 20px; flex-wrap: wrap; background-color: #333; color: #fff; padding: 20px;">
+                    <div class="footer-section" style="text-align: left; max-width: 200px;">
+                        <h3 style="color: #fff;">INFORMATION</h3>
+                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by.</p>
                     </div>
-                    <div class="footer-section" style="text-align: center;">
-                        <h3>LET US HELP YOU</h3>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                    <div class="footer-section" style="text-align: left; max-width: 200px;">
+                        <h3 style="color: #fff;">LET US HELP YOU</h3>
+                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by.</p>
                     </div>
-                    <div class="footer-section" style="text-align: center;">
-                        <h3>USEFUL LINKS</h3>
+                    <div class="footer-section" style="text-align: left; max-width: 200px;">
+                        <h3 style="color: #fff;">USEFUL LINKS</h3>
                         <ul style="list-style-type: none; padding: 0;">
-        <li><a href="#" style="text-decoration: none; display: block;">About Us</a></li>
-        <li><a href="#" style="text-decoration: none; display: block;">Careers Us</a></li>
-        <li><a href="#" style="text-decoration: none; display: block;">Sell on Shopee</a></li>
-    </ul>
-                        <div style="display: flex; justify-content: center; align-items: center; margin-top: 10px;">
-                            <input type="email" placeholder="Enter your email" style="padding: 5px; margin-right: 10px;">
+                            <li><a href="#" style="text-decoration: none; color: #fff;">About Us</a></li>
+                            <li><a href="#" style="text-decoration: none; color: #fff;">Careers</a></li>
+                            <li><a href="#" style="text-decoration: none; color: #fff;">Sell on Shopee</a></li>
+                            <li><a href="#" style="text-decoration: none; color: #fff;">Press & News</a></li>
+                            <li><a href="#" style="text-decoration: none; color: #fff;">Competitions</a></li>
+                            <li><a href="#" style="text-decoration: none; color: #fff;">Terms & Conditions</a></li>
+                        </ul>
+                        <div style="margin-top: 10px;">
+                            <input type="email" placeholder="Enter your email" style="padding: 5px; width: 70%; margin-right: 5px;">
                             <button class="btn" style="padding: 5px 10px;">SUBSCRIBE</button>
                         </div>
                     </div>
-                    <div class="footer-section" style="text-align: center;">
-                        <h3>OUR DESIGN</h3>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                    <div class="footer-section" style="text-align: left; max-width: 200px;">
+                        <h3 style="color: #fff;">OUR DESIGN</h3>
+                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by.</p>
                     </div>
+                </div>
+                <div style="text-align: center; color: #fff; padding: 10px; background-color: #222;">
+                   
                 </div>
             `;
             footerContent.innerHTML = footerHTML;

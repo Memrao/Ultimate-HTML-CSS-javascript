@@ -6,8 +6,8 @@ body {
     height: 120vh;
     margin: 0;
     font-family: Arial, sans-serif;
-    font-size: 16px;
-    /* Base font size */
+    font-size: 1rem;
+    /* Base font size is now 1rem */
 }
 
 a {
@@ -22,33 +22,43 @@ a:hover {
 
 /* Header Styles */
 
+
+/* Toggle Icon Container */
+
 .category-toggle {
     display: flex;
     align-items: center;
     cursor: pointer;
-    font-size: 18px;
-    padding: 10px;
+    font-size: 1.125rem;
+    /* 18px equivalent */
+    padding: 9.625rem;
+    /* 10px equivalent */
+    position: relative;
+    left: 10px;
+    /* Aligns the toggle to the left */
 }
+
+
+/* Arrow Icon with Rotation Effect */
 
 #categoryIcon {
     transition: transform 0.3s ease;
 }
 
-#categoryDropdown {
-    margin-top: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
+.rotate {
+    transform: rotate(180deg);
+    /* Rotates the arrow when clicked */
+    transition: transform 0.3s ease;
 }
 
-#categoryList {
-    list-style-type: none;
+
+/* Adjusting the image arrow icon */
+
+#imgarrowIcon {
     padding: 0;
-}
-
-#categoryList li {
-    padding: 5px 0;
-    cursor: pointer;
+    /* Removing unnecessary padding */
+    margin-left: 7px;
+    /* Aligns the icon next to the logo */
 }
 
 ul {
@@ -67,21 +77,91 @@ ul li {
 
 .logo img {
     width: 9rem;
-    /* 150px equivalent */
 }
 
-.dropdown-container {
-    padding-right: 2rem;
+
+/* Container for category list */
+
+#categoryDropdown {
+    position: absolute;
+    top: 50px;
+    /* Adjust as necessary */
+    left: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    width: 800px;
+    /* Adjust the width */
+    height: auto;
+    /* Auto height to fit content */
+    overflow: auto;
+    /* Show scroll if necessary */
+    border-radius: 3rem;
+    /* Add rounded corners */
+    padding: 10px;
+    /* Ensure padding around the dropdown */
 }
 
-#filterDropdown {
-    padding: 0.5rem;
-    border-radius: 0.625rem;
-    /* 10px equivalent */
-    background-color: #fff;
-    border: 0.0625rem solid #FFA500;
-    /* 1px equivalent */
-    box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
+
+/* Style for category list */
+
+#categoryList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 columns */
+    gap: 8px;
+    /* Space between items */
+    list-style-type: none;
+    padding: 0;
+    /* Remove default padding */
+    margin: 0;
+    height: auto;
+    /* Adjust height as needed */
+}
+
+
+/* Style for list items */
+
+#categoryList li {
+    padding: 8px 12px;
+    border-radius: 4px;
+    /* Rounded corners for list items */
+    background-color: #f9f9f9;
+    /* Light background color for items */
+    transition: background-color 0.3s, border 0.3s;
+    /* Smooth transition for hover effect */
+}
+
+
+/* Style for links within list items */
+
+#categoryList li a {
+    text-decoration: none;
+    color: black;
+    display: block;
+    text-align: center;
+    /* Center text within each item */
+}
+
+
+/* Hover effect for list items */
+
+#categoryList li:hover {
+    background-color: #e0e0e0;
+    /* Change background color on hover */
+    border: 1px solid #ddd;
+    /* Add border on hover */
+}
+
+
+/* Remove borders from dropdown */
+
+#categoryDropdown {
+    border: none;
+    /* Remove the border from the container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Add shadow if needed */
 }
 
 
@@ -103,7 +183,6 @@ ul li:hover {
     color: #fff;
     padding: 0.5rem 1rem;
     border-radius: 1.25rem;
-    /* 20px equivalent */
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -128,61 +207,9 @@ ul li:hover {
     text-align: center;
     margin-top: 1rem;
     max-width: 34rem;
-    /* 800px equivalent */
     margin-left: auto;
     margin-right: auto;
 }
-
-
-/* Slider Section */
-
-
-/* .slider {
-    position: relative;
-    width: 100%;
-    height: 50vh;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1rem;
-}
-
-.slides {
-    display: flex;
-    width: 100%;
-    height: 100%;
-}
-
-.slide {
-    width: 100%;
-    height: 100%;
-}
-
-.slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-}
-
-.left-arrow {
-    left: 1.25rem;
-  
-} */
-
-
-/* 
-.right-arrow {
-    right: 1.25rem;
-   
-} */
 
 
 /* Contact Us Button */
@@ -199,16 +226,50 @@ ul li:hover {
     border: none;
     padding: 1rem 2rem;
     border-radius: 1.5625rem;
-    /* 25px equivalent */
     font-size: 1.2rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    /* margin: 70px; */
     margin-top: 10em;
 }
 
 .contact-button button:hover {
     background-color: #333;
+}
+
+
+/* Media Queries for Responsiveness */
+
+@media (max-width: 768px) {
+    .furniture h1 {
+        font-size: 2.25rem;
+        /* Smaller font size for smaller screens */
+    }
+    .furniture-description p {
+        font-size: 0.875rem;
+        /* Adjust text size for mobile */
+    }
+    ul {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    ul li {
+        margin: 0.5rem 0;
+        /* Add space between items for better mobile layout */
+    }
+    #loginBtn {
+        padding: 0.5rem 0.875rem;
+        /* Smaller button padding */
+        font-size: 0.875rem;
+    }
+    .contact-button {
+        padding-bottom: 10em;
+    }
+    .contact-button button {
+        font-size: 1rem;
+        /* Adjust button font size */
+        padding: 0.875rem 1.5rem;
+        /* Adjust padding */
+    }
 }
 
 
@@ -301,79 +362,74 @@ ul li:hover {
 /* About Us Section */
 
 .about-us {
-    padding: 5rem 0;
+    padding: 4rem 1rem;
+    /* Adjusted padding for smaller screens */
     background-color: #FFA500;
 }
 
 .about-heading {
-    text-align: left;
+    text-align: center;
+    /* Center text on mobile for better alignment */
     margin: 0 auto;
-    /* Center the heading */
-    max-width: 80%;
-    /* Optional: Restrict width for better alignment */
+    max-width: 90%;
+    /* Make it slightly narrower for better alignment */
 }
 
 .about-heading h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
+    /* Adjusted font size for mobile */
     color: #ffffff;
-    text-align: left;
-    justify-content: left;
-    align-items: left;
+    margin: 0;
 }
 
 .about-description {
-    text-align: left;
-    justify-content: left;
+    text-align: center;
+    /* Center text on mobile */
     margin: 2rem auto;
-    /* Center the description with vertical spacing */
-    max-width: 80%;
-    /* Optional: Restrict width for better alignment */
+    max-width: 90%;
+    /* Full width with margins for better alignment */
 }
 
 .about-description p {
-    max-width: 30rem;
-    /* 800px equivalent */
     color: #ffffff;
-    text-align: left;
+    font-size: 0.875rem;
+    /* Adjusted font size for readability */
+    line-height: 1.6;
+    /* Improved readability */
 }
 
 .about-content {
-    text-align: left;
+    text-align: center;
+    /* Center text and content on mobile */
     margin: 2rem auto;
-    /* Center the content with vertical spacing */
-    max-width: 80%;
-    /* Optional: Restrict width for better alignment */
-    position: relative;
+    max-width: 90%;
+    /* Ensure the content fits well */
     display: flex;
     flex-direction: column;
-    /* Stack elements vertically */
-    align-items: flex-start;
-    /* Align items to the start of the container */
+    align-items: center;
+    /* Center items */
 }
 
 .about-content img {
-    width: 30%;
+    width: 100%;
+    max-width: 300px;
+    /* Limit maximum width for better fit */
     border-radius: 0.625rem;
-    /* 10px equivalent */
-    /* box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.1); */
-    position: absolute;
-    /* Position absolutely within the relatively positioned container */
-    left: 60%;
-    /* Adjust as needed */
-    bottom: 1%;
-    /* Adjust the top position as needed */
+    margin-bottom: 1rem;
+    /* Space between image and button */
 }
 
 .about-content button {
     background-color: #000000;
     color: #fff;
-    padding: 1rem 1rem;
+    padding: 1rem;
     border-radius: .4rem;
-    /* 20px equivalent */
     cursor: pointer;
     margin-top: 1.2rem;
-    margin: .1rem;
-    /* Space between image and button */
+    width: 100%;
+    /* Full width for mobile screens */
+    max-width: 300px;
+    /* Limit button width */
 }
 
 .about-content button:hover {
@@ -384,7 +440,39 @@ ul li:hover {
 .button-description {
     color: #ffffff;
     margin-top: 0.5rem;
-    /* Space between button and description */
+}
+
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+    .about-heading h1 {
+        font-size: 1.75rem;
+        /* Slightly smaller on smaller tablets */
+    }
+    .about-description p {
+        font-size: 0.875rem;
+    }
+    .about-content img {
+        max-width: 100%;
+        /* Ensure image takes full width on smaller screens */
+    }
+    .about-content button {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-heading h1 {
+        font-size: 1.5rem;
+    }
+    .about-description p {
+        font-size: 0.75rem;
+    }
+    .about-content button {
+        font-size: 0.875rem;
+        padding: 0.75rem;
+    }
 }
 
 
@@ -979,34 +1067,50 @@ ul li:hover {
     /* Center the background image */
     background-repeat: no-repeat;
     /* Do not repeat the background image */
-    padding: 50px 20px;
+    padding: 2px 2px;
     /* Adjust padding as needed */
     color: #fff;
     /* Ensure text is readable against background */
 }
 
+
+/* Heading adjustments */
+
 .contact-us-heading h1 {
     font-size: 2.5rem;
-    margin: 1px;
+    margin: 0;
+    margin-top: 150px;
+    /* Increased margin to move the heading down */
     text-align: left;
     display: block;
-    margin-left: 200px;
+    margin-left: 185px;
+    margin-right: auto;
     padding: 20px;
 }
+
+
+/* Contact us container */
 
 .contact-us-container {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    /* Changed to flex-start to ensure it aligns correctly */
     gap: 50px;
     flex-wrap: wrap;
+    margin-top: 20px;
+    /* Added margin-top to control spacing below the heading */
 }
+
+
+/* Contact us form */
 
 .contact-us-form {
     width: 450px;
-    /* height: auto; */
-    padding: 10px;
-    margin-top: 40px;
+    padding: 30px;
+    margin-top: 0;
+    /* Adjusted margin to remove extra spacing */
+    margin-bottom: 50px;
 }
 
 .contact-us-form input,
@@ -1044,10 +1148,10 @@ ul li:hover {
 /* Footer Styles */
 
 footer {
-    background-color: #333;
+    /* background-color: #333; */
     color: #fff;
     text-align: center;
-    padding: 76px 0;
+    /* padding: 76px 0; */
     position: relative;
     bottom: 0;
     width: 100%;
@@ -1185,6 +1289,7 @@ footer p {
 
 .footer-copyright {
     text-align: center;
-    bottom: 1rem;
-    padding: 8px;
+    /* bottom: 1rem; */
+    /* padding: 8px; */
+    border: 1px solid black;
 }

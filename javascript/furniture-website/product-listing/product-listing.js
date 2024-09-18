@@ -1,9 +1,8 @@
 //header
-
 document.addEventListener('DOMContentLoaded', function() {
-    // Define the logo source and categories
-    const logoSrc = 'logo.png'; // Set this to your actual logo path
-    const CATEGORY_API_URL = 'https://dummyjson.com/products/categories'; // API for fetching categories
+
+    const logoSrc = '../images/logo.png';
+    const CATEGORY_API_URL = 'https://dummyjson.com/products/categories';
 
     // Navigation links
     const navLinks = [
@@ -13,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         { href: '../category/category.html', text: 'CATEGORY' },
         { href: '../home/home.html', text: 'CONTACT' }
     ];
+
 
     // Get the navList element from the DOM
     const navList = document.getElementById('navList');
@@ -158,8 +158,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize the page
     fetchCategories(); // Fetch and add categories to the dropdown
-
 });
+
+
+
+
+
 
 
 //products fetching
@@ -183,22 +187,87 @@ document.addEventListener("DOMContentLoaded", async() => {
             return [];
         }
     }
-
     // Function to render products to the page
     function renderProducts(products) {
+        const productGrid = document.getElementById('productGrid');
         productGrid.innerHTML = ''; // Clear previous products
+
         products.forEach(product => {
             const productCard = document.createElement('div');
             productCard.classList.add('product-card');
+            productCard.dataset.id = product.id; // Add product ID to the card
+
+            // Generate star rating
+            const rating = product.rating || 0;
+            const fullStars = Math.floor(rating);
+            const halfStar = rating % 1 >= 0.5 ? 1 : 0;
+            const emptyStars = 5 - fullStars - halfStar;
+
+            // Create star elements
+            const starsHTML = `
+            ${'<span class="star full">&#9733;</span>'.repeat(fullStars)}
+            ${halfStar ? '<span class="star half">&#9733;</span>' : ''}
+            ${'<span class="star empty">&#9734;</span>'.repeat(emptyStars)}
+        `;
+
+            // Append product details including description
             productCard.innerHTML = `
-                <img src="${product.thumbnail || 'default-thumbnail.png'}" alt="${product.title || 'Product Image'}">
-                <h3>${product.title || 'Product Title'}</h3>
-                <p>${product.description ? product.description.slice(0, 100) + '...' : 'No description available'}</p>
-                <p class="price">$${product.price || 'N/A'}</p>
-                <button class="add-to-cart-btn" data-id="${product.id}">Add to Cart</button>
-            `;
+            <img src="${product.thumbnail || 'default-thumbnail.png'}" alt="${product.title || 'Product Image'}">
+            <h3>${product.title || 'Product Title'}</h3>
+             <p class="description">${product.description || 'No description available'}</p> 
+            <p class="price">$${product.price || 'N/A'}</p>
+            <div class="rating">
+                ${starsHTML} (${rating.toFixed(1) || 'No rating available'})
+            </div>
+           
+            <button class="add-to-cart-btn" data-id="${product.id}">Add to Cart</button>
+        `;
+
             productGrid.appendChild(productCard);
+
+            // Add event listener for product click
+            productCard.addEventListener('click', () => {
+                window.location.href = `../product/product.html?id=${product.id}`;
+            });
         });
+
+        // Add event listeners to "Add to Cart" buttons
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            button.addEventListener('click', (event) => {
+                event.stopPropagation(); // Prevent click from bubbling to productCard
+                const productId = event.target.dataset.id;
+                addToCart(productId);
+            });
+
+            // Add event listener for product click
+            productCard.addEventListener('click', () => {
+                window.location.href = `../product/product.html?id=${product.id}`;
+            });
+        });
+
+        // Add event listeners to "Add to Cart" buttons
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            button.addEventListener('click', (event) => {
+                event.stopPropagation(); // Prevent click from bubbling to productCard
+                const productId = event.target.dataset.id;
+                addToCart(productId);
+            });
+        });
+
+
+        // Add event listeners to "Add to Cart" buttons
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            button.addEventListener('click', (event) => {
+                event.stopPropagation(); // Prevent click from bubbling to productCard
+                const productId = event.target.dataset.id;
+                addToCart(productId);
+            });
+        });
+
+
+
+
+
 
         // Add event listeners to "Add to Cart" buttons
         document.querySelectorAll('.add-to-cart-btn').forEach(button => {
@@ -283,37 +352,50 @@ document.addEventListener("DOMContentLoaded", async() => {
 });
 
 
+
+
+
+
+
+//footer
+
 document.addEventListener('DOMContentLoaded', function() {
     // Function to load footer content
     function loadFooterContent() {
         const footerContent = document.getElementById('footerContent');
         if (footerContent) {
             const footerHTML = `
-                <div class="container" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-                    <div class="footer-section" style="text-align: center;">
-                        <h3>INFORMATION</h3>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                <div class="container" style="display: flex; justify-content: space-around; gap: 20px; flex-wrap: wrap; background-color: #333; color: #fff; padding: 20px;">
+                    <div class="footer-section" style="text-align: left; max-width: 200px;">
+                        <h3 style="color: #fff;">INFORMATION</h3>
+                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by.</p>
                     </div>
-                    <div class="footer-section" style="text-align: center;">
-                        <h3>LET US HELP YOU</h3>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                    <div class="footer-section" style="text-align: left; max-width: 200px;">
+                        <h3 style="color: #fff;">LET US HELP YOU</h3>
+                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by.</p>
                     </div>
-                    <div class="footer-section" style="text-align: center;">
-                        <h3>USEFUL LINKS</h3>
+                    <div class="footer-section" style="text-align: left; max-width: 200px;">
+                        <h3 style="color: #fff;">USEFUL LINKS</h3>
                         <ul style="list-style-type: none; padding: 0;">
-        <li><a href="#" style="text-decoration: none; display: block;">About Us</a></li>
-        <li><a href="#" style="text-decoration: none; display: block;">Careers Us</a></li>
-        <li><a href="#" style="text-decoration: none; display: block;">Sell on Shopee</a></li>
-    </ul>
-                        <div style="display: flex; justify-content: center; align-items: center; margin-top: 10px;">
-                            <input type="email" placeholder="Enter your email" style="padding: 5px; margin-right: 10px;">
+                            <li><a href="#" style="text-decoration: none; color: #fff;">About Us</a></li>
+                            <li><a href="#" style="text-decoration: none; color: #fff;">Careers</a></li>
+                            <li><a href="#" style="text-decoration: none; color: #fff;">Sell on Shopee</a></li>
+                            <li><a href="#" style="text-decoration: none; color: #fff;">Press & News</a></li>
+                            <li><a href="#" style="text-decoration: none; color: #fff;">Competitions</a></li>
+                            <li><a href="#" style="text-decoration: none; color: #fff;">Terms & Conditions</a></li>
+                        </ul>
+                        <div style="margin-top: 10px;">
+                            <input type="email" placeholder="Enter your email" style="padding: 5px; width: 70%; margin-right: 5px;">
                             <button class="btn" style="padding: 5px 10px;">SUBSCRIBE</button>
                         </div>
                     </div>
-                    <div class="footer-section" style="text-align: center;">
-                        <h3>OUR DESIGN</h3>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                    <div class="footer-section" style="text-align: left; max-width: 200px;">
+                        <h3 style="color: #fff;">OUR DESIGN</h3>
+                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by.</p>
                     </div>
+                </div>
+                <div style="text-align: center; color: #fff; padding: 10px; background-color: #222;">
+                   
                 </div>
             `;
             footerContent.innerHTML = footerHTML;
