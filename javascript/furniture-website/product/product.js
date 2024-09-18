@@ -278,6 +278,8 @@ function addToCart(product) {
     // Update the cart sidebar with the latest cart contents
     updateCart();
 }
+
+
 let cart = [];
 
 // Get elements
@@ -300,19 +302,17 @@ function addToCart(product) {
         cart.push({ ...product, quantity: 1 });
     }
 
-    // Update cart count
+    
     cartCountElement.innerText = cart.reduce((total, item) => total + item.quantity, 0);
 
-    // Store updated cart in localStorage
-    localStorage.setItem('cart', JSON.stringify(cart));
-
-    // Update sidebar and open it
+   
     updateCartSidebar();
-    openCartSidebar();
 
-    // Show popup message
-    showPopup(`${product.title} has been added to the cart!`);
+ 
+    openCartSidebar();
 }
+
+
 
 // Update Cart Sidebar with Products
 function updateCartSidebar() {
@@ -396,20 +396,24 @@ cartIcon.addEventListener('click', () => {
     cartSidebar.classList.toggle('open');
 });
 
-// Sample product add function (Assuming you have multiple products)
-document.querySelectorAll('.add-to-cart-btn').forEach(button => {
-    button.addEventListener('click', (e) => {
-        const product = {
-            id: e.target.getAttribute('data-id'),
-            title: e.target.getAttribute('data-title'),
-            price: parseFloat(e.target.getAttribute('data-price')),
-            thumbnail: e.target.getAttribute('data-thumbnail')
-        };
-
-        addToCart(product);
-        showPopup('Product added to cart!');
-    });
+// Close Sidebar
+closeSidebarButton.addEventListener('click', () => {
+    cartSidebar.classList.remove('open');
 });
+
+// Sample product add function 
+document.querySelector('.add-to-cart-btn').addEventListener('click', () => {
+    
+    addToCart(product);
+});
+
+// Cart icon click to open the sidebar
+cartIcon.addEventListener('click', () => {
+    openCartSidebar();
+});
+
+
+
 
 // Function to show a popup message
 function showPopup(message) {
@@ -422,70 +426,45 @@ function showPopup(message) {
         popup.remove();
     }, 3000); // Hide popup after 3 seconds
 }
-// Update Cart Sidebar with Products
-function updateCartSidebar() {
-    cartItemsElement.innerHTML = ''; // Clear existing cart items
-    cart.forEach(item => {
-        const productDiv = document.createElement('div');
-        productDiv.classList.add('cart-item');
-        
-        productDiv.innerHTML = `
-            <img src="${item.thumbnail || 'default-thumbnail.png'}" alt="${item.title || 'Product Image'}" class="cart-item-image">
-            <div class="cart-item-info">
-                <h4 class="cart-item-title">${item.title}</h4>
-                <p class="cart-item-price">$${item.price} x ${item.quantity}</p>
-                <div class="cart-item-actions">
-                    <button class="remove-item" data-id="${item.id}">Remove</button>
-                    <button class="decrease-quantity" data-id="${item.id}">-</button>
-                    <span class="item-quantity">${item.quantity}</span>
-                    <button class="increase-quantity" data-id="${item.id}">+</button>
-                </div>
-            </div>
-        `;
-        cartItemsElement.appendChild(productDiv);
-    });
 
-    // Add event listeners for remove and quantity buttons
-    document.querySelectorAll('.remove-item').forEach(button => {
-        button.addEventListener('click', (e) => {
-            const productId = e.target.getAttribute('data-id');
-            removeFromCart(productId);
-        });
-    });
-    
-    document.querySelectorAll('.increase-quantity').forEach(button => {
-        button.addEventListener('click', (e) => {
-            const productId = e.target.getAttribute('data-id');
-            changeQuantity(productId, 1);  // Increase quantity by 1
-        });
-    });
+// Function to update the cart sidebar with items
+async function updateCart() {
+    try {
+        const response = await fetch('https://dummyjson.com/carts/1');
+        const cart = await response.json();
 
-    document.querySelectorAll('.decrease-quantity').forEach(button => {
-        button.addEventListener('click', (e) => {
-            const productId = e.target.getAttribute('data-id');
-            changeQuantity(productId, -1); // Decrease quantity by 1
-        });
-    });
-}
+        if (cart && cart.products) {
+            const cartItemsContainer = document.getElementById('cart-items');
+            cartItemsContainer.innerHTML = ''; // Clear previous items
 
-// Function to remove item from cart
-function removeFromCart(productId) {
-    cart = cart.filter(item => item.id !== productId);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartSidebar();
-}
+            if (cart.products.length === 0) {
+                cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
+            } else {
+                cart.products.forEach(product => {
+                    const itemElement = document.createElement('div');
+                    itemElement.classList.add('cart-item');
+                    itemElement.innerHTML = `
+                        <img src="${product.thumbnail || 'default-thumbnail.png'}" alt="${product.title}" />
+                        <h3>${product.title}</h3>
+                        <p>Price: $${product.price}</p>
+                        <p>Quantity: ${product.quantity}</p>
+                        <p>Total: $${product.total.toFixed(2)}</p>
+                    `;
+                    cartItemsContainer.appendChild(itemElement);
+                });
+            }
 
-// Function to change the quantity of a product in the cart
-function changeQuantity(productId, delta) {
-    const product = cart.find(item => item.id === productId);
-    if (product) {
-        product.quantity += delta;
-        if (product.quantity <= 0) {
-            removeFromCart(productId);  // If quantity goes to 0, remove the item
-        } else {
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartSidebar(); // Update the sidebar after changing the quantity
+            // Update the cart totals
+            const cartTotals = document.getElementById('cart-totals');
+            cartTotals.innerHTML = `
+                <p>Total Products: ${cart.totalProducts}</p>
+                <p>Total Quantity: ${cart.totalQuantity}</p>
+                <p>Total: $${cart.total.toFixed(2)}</p>
+                <p>Discounted Total: $${cart.discountedTotal.toFixed(2)}</p>
+            `;
         }
+    } catch (error) {
+        console.error('Failed to update cart:', error);
     }
 }
 
