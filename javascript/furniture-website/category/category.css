@@ -82,10 +82,8 @@ ul li {
 #filterDropdown {
     padding: 0.5rem;
     border-radius: 0.625rem;
-    /* 10px equivalent */
     background-color: #fff;
     border: 0.0625rem solid #FFA500;
-    /* 1px equivalent */
     box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
 }
 
@@ -124,7 +122,6 @@ ul li:hover {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 15px;
-    /* Adjust spacing between items */
 }
 
 
@@ -207,7 +204,6 @@ header {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 15px;
-    /* Spacing between items */
 }
 
 
@@ -272,9 +268,7 @@ footer .container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    /* Center the footer sections */
     gap: 15px;
-    /* Reduce gap between sections */
     padding: 30px;
 }
 
@@ -285,7 +279,6 @@ footer .footer-section {
     flex: 1;
     margin: 10px;
     max-width: 200px;
-    /* Restrict width of each section for better alignment */
     font-style: normal;
 }
 
@@ -310,7 +303,6 @@ footer p {
 /* Useful Links Section */
 
 footer ul {
-    /* list-style-type: none; */
     padding: 0;
 }
 
